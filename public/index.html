@@ -49,6 +49,15 @@
         font-family: Poppins, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
         background: #f8faf9;
       }
+
+      /* If logo missing, hide the image gracefully */
+      .site-logo--img:invalid,
+      .site-logo--img[src=""] {
+        display: none;
+      }
+
+      /* small helper to hide the skeleton after React loads (safety fallback) */
+      #preload-ui.hidden { display: none !important; }
     </style>
   </head>
 
@@ -57,7 +66,7 @@
     <!-- 🔥 React will mount inside here -->
     <div id="root"></div>
 
-    <!-- 🌟 Skeleton / fallback UI while React loads -->
+    <!-- Fallback skeleton UI while React loads -->
     <div id="preload-ui" class="fixed inset-0 bg-white z-0">
       <div class="min-h-screen flex flex-col">
 
@@ -65,10 +74,11 @@
         <header class="bg-white shadow-sm">
           <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-              <img src="%PUBLIC_URL%/assets/logo.png"
-                   alt="Sendr logo"
-                   class="w-10 h-10 rounded-md object-cover border"
-                   onerror="this.style.display='none'" />
+              <img
+                src="%PUBLIC_URL%/assets/logo.png"
+                alt="Sendr logo"
+                class="site-logo--img w-10 h-10 rounded-md object-cover border"
+              />
 
               <div>
                 <div class="text-2xl font-semibold text-brand-600">Sendr</div>
@@ -144,14 +154,26 @@
       </div>
     </div>
 
+    <!-- Helpful message if JS is disabled -->
+    <noscript>
+      <style>
+        /* hide the skeleton if JS is off and show a simple message */
+        #preload-ui { display: none !important; }
+        .no-js-message { padding: 2rem; text-align: center; }
+      </style>
+      <div class="no-js-message">
+        <h2>JavaScript is required</h2>
+        <p>Sendr is a JavaScript application. Please enable JavaScript in your browser to use the app.</p>
+      </div>
+    </noscript>
+
     <!-- Remove skeleton when React loads -->
     <script>
       window.addEventListener("load", () => {
         const pre = document.getElementById("preload-ui");
-        if (pre) pre.style.display = "none";
+        if (pre) pre.classList.add("hidden");
       });
     </script>
 
   </body>
 </html>
-
