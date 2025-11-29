@@ -1,1 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#18A14A" />
+    <meta name="description" content="Sendr — Shop next door, instantly. Hyperlocal quickcommerce connecting customers and local shops." />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Preconnect & font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN for fast UI development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f6fff7",
+                100: "#ecfff0",
+                300: "#8EE08D",
+                500: "#18A14A",
+                600: "#0f8b3a"
+              },
+              accent: "#FFCC00"
+            },
+            fontFamily: {
+              sans: ["Poppins", "ui-sans-serif", "system-ui"]
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- SEO -->
+    <meta property="og:title" content="Sendr - Shop next door, instantly." />
+    <meta property="og:description" content="Hyperlocal quickcommerce connecting customers to nearby shops in minutes." />
+    <meta property="og:image" content="%PUBLIC_URL%/assets/placeholder-shop.jpg" />
+
+    <title>Sendr — Shop next door, instantly.</title>
+
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: Poppins, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        background: #f8faf9;
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+
+    <!-- 🔥 React will mount inside here -->
+    <div id="root"></div>
+
+    <!-- 🌟 Skeleton / fallback UI while React loads -->
+    <div id="preload-ui" class="fixed inset-0 bg-white z-0">
+      <div class="min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+          <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <img src="%PUBLIC_URL%/assets/logo.png"
+                   alt="Sendr logo"
+                   class="w-10 h-10 rounded-md object-cover border"
+                   onerror="this.style.display='none'" />
+
+              <div>
+                <div class="text-2xl font-semibold text-brand-600">Sendr</div>
+                <div class="text-xs text-gray-500">Shop next door, instantly.</div>
+              </div>
+            </div>
+
+            <nav class="hidden sm:flex items-center space-x-4">
+              <span class="text-sm text-gray-700">Customer</span>
+              <span class="text-sm text-gray-700">Vendor</span>
+              <button class="ml-4 px-3 py-1.5 bg-brand-500 text-white rounded-md text-sm shadow-sm">
+                Cart
+              </button>
+            </nav>
+          </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="bg-gradient-to-b from-white to-gray-50">
+          <div class="max-w-5xl mx-auto px-4 py-8">
+            <h1 class="text-3xl sm:text-4xl font-bold leading-tight text-gray-900">
+              Groceries & essentials from shops near you
+            </h1>
+            <p class="mt-3 text-gray-600">Fast deliveries from neighborhood stores — groceries, dairy, snacks and more.</p>
+
+            <div class="mt-6 max-w-xl">
+              <div class="flex items-center gap-3">
+                <div class="flex-1">
+                  <div class="w-full h-12 rounded-lg bg-gray-200 animate-pulse"></div>
+                </div>
+                <div class="w-24 h-12 bg-brand-500 rounded-lg animate-pulse"></div>
+              </div>
+              <div class="mt-2 text-xs text-gray-500">Showing shops within <strong>1–5 km</strong>.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- skeleton grid -->
+        <main class="max-w-5xl mx-auto px-4 py-8">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-lg p-3 shadow-sm animate-pulse">
+              <div class="h-28 bg-gray-200 rounded-md"></div>
+              <div class="mt-3 h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="mt-2 h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+
+            <div class="bg-white rounded-lg p-3 shadow-sm animate-pulse">
+              <div class="h-28 bg-gray-200 rounded-md"></div>
+              <div class="mt-3 h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="mt-2 h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+
+            <div class="bg-white rounded-lg p-3 shadow-sm animate-pulse">
+              <div class="h-28 bg-gray-200 rounded-md"></div>
+              <div class="mt-3 h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="mt-2 h-4 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          </div>
+        </main>
+
+        <!-- footer -->
+        <footer class="mt-auto bg-white border-t">
+          <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
+            <div>© <strong>Sendr</strong> — Shop next door, instantly.</div>
+            <div class="mt-3 sm:mt-0">
+              <span class="mr-4">About</span>
+              <span class="mr-4">Contact</span>
+              <span>Privacy</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+
+    <!-- Remove skeleton when React loads -->
+    <script>
+      window.addEventListener("load", () => {
+        const pre = document.getElementById("preload-ui");
+        if (pre) pre.style.display = "none";
+      });
+    </script>
+
+  </body>
+</html>
 
